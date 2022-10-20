@@ -1,5 +1,8 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
+using Core.Utilities.IoC;
 using Core.Utilities.Security;
 using Core.Utilities.Security.Encryption;
 using DataAccess.Abstract;
@@ -54,6 +57,9 @@ namespace WebAPI
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                 };
+            });
+            services.AddDepencyResolvers(new ICoreModule[] {
+                new CoreModule()
             });
 
         }
